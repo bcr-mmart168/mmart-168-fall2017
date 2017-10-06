@@ -1,7 +1,7 @@
+// Brandon Russell
 let language = 'English'
 let languageCode = 'en'
 let jsonData
-
 
 const setLanguage = (code) => {
     //Note: language codes here: https://www.w3schools.com/tags/ref_language_codes.asp
@@ -40,8 +40,6 @@ const getData = () => {
             let div
             let textNode
 
-            // output statuses:
-            console.log(json.statuses)
 
             // clear out existing tweets:
             clearData()
@@ -55,8 +53,13 @@ const getData = () => {
             // ---------------------- DELIVERABLE -----------------------------------
             // When somebody searches for a tweet, they will only see tweets that contain hashtags.
 
+            tweetsWithHashtags = json.statuses.filter(function (status) {
+              return status.text.indexOf('#') >= 0
+            })
+            console.log(json.statuses)
+            console.log(tweetsWithHashtags)
 
-            json.statuses.forEach((status) => {
+            tweetsWithHashtags.forEach((status) => {
                 div = document.createElement('div')
                 div.className = 'tweet'
                 textNode = document.createTextNode(status.text)
@@ -64,5 +67,5 @@ const getData = () => {
                 document.getElementById('results').appendChild(div)
             })
 
-        })
-}
+          })
+        }

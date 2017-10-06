@@ -1,6 +1,18 @@
+// Brandon Russell
 let language = 'English'
 let languageCode = 'en'
 let jsonData
+
+const reverseTweet = (tweetText) => {
+// Searches tweetText for a hashtag. If a hashtag is found
+// the Tweet is unchanged. If no hashtag is found the text is reversed.
+  if (tweetText.indexOf('#') === -1) {
+    return tweetText.split("").reverse().join("");
+  } else {
+    return tweetText
+  }
+
+}
 
 
 const setLanguage = (code) => {
@@ -67,7 +79,7 @@ const getData = () => {
             json.statuses.forEach((status) => {
                 div = document.createElement('div')
                 div.className = 'tweet'
-                textNode = document.createTextNode(status.text)
+                textNode = document.createTextNode(reverseTweet(status.text))
                 div.appendChild(textNode)
                 document.getElementById('results').appendChild(div)
             })
